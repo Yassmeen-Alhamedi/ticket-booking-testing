@@ -17,6 +17,7 @@ public class BookingManager {
         this.paymentGateway = paymentGateway;
         this.notificationService = notificationService;
     }
+
     /**
      * Books tickets for a valid request.
      *
@@ -28,6 +29,7 @@ public class BookingManager {
 
         // 1. Validate the booking request
         validateRequest(request);
+
         // 2. Calculate the total amount
         int totalAmountInCents = calculateTotalAmount(request);
 
@@ -97,7 +99,6 @@ public class BookingManager {
         }
     }
 
-
     private int calculateTotalAmount(BookingRequest request) {
         try {
             return Math.multiplyExact(
@@ -108,5 +109,4 @@ public class BookingManager {
             throw new IllegalArgumentException("Total amount is too large");
         }
     }
-
 }

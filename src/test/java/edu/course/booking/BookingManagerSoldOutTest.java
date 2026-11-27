@@ -40,14 +40,13 @@ class BookingManagerSoldOutTest {
                 .thenReturn(true);
 
         assertThrows(
-                IllegalStateException.class,
+                EventSoldOutException.class,
                 () -> bookingManager.bookTicket(request)
         );
 
-        verify(paymentGateway, never())
-                .processPayment(anyString(), anyInt());
-
-        verify(notificationService, never())
-                .sendConfirmation(anyString());
+        verify(eventRepository, times(1)).isSoldOut("E201");
+        verify(paymentGateway, never()).processPayment(anyString(), anyInt());
+        verify(eventRepository, never()).saveBooking(any());
+        verify(notificationService, never()).sendConfirmation(anyString());
     }
 }

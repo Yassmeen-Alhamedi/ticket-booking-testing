@@ -17,23 +17,19 @@ public class BookingManager {
         this.paymentGateway = paymentGateway;
         this.notificationService = notificationService;
     }
-
+    /**
+     * Books tickets for a valid request.
+     *
+     * @throws IllegalArgumentException if the request is null or invalid
+     * @throws EventSoldOutException if the event is sold out
+     * @throws IllegalStateException if payment fails
+     */
     public String bookTicket(BookingRequest request) {
 
         // 1. Validate the booking request
         validateRequest(request);
-
         // 2. Calculate the total amount
-        int totalAmountInCents;
-
-        try {
-            totalAmountInCents = Math.multiplyExact(
-                    request.getTicketQuantity(),
-                    request.getPricePerTicketInCents()
-            );
-        } catch (ArithmeticException e) {
-            throw new IllegalArgumentException("Total amount is too large");
-        }
+        int totalAmountInCents = calculateTotalAmount(request);
 
         // 3. Check if the event is sold out
         boolean soldOut = eventRepository.isSoldOut(
@@ -41,7 +37,7 @@ public class BookingManager {
         );
 
         if (soldOut) {
-            throw new IllegalStateException("Event is sold out");
+            throw new EventSoldOutException(request.getEventId());
         }
 
         // 4. Process payment
@@ -100,4 +96,17 @@ public class BookingManager {
             throw new IllegalArgumentException("Invalid ticket price");
         }
     }
+
+
+    private int calculateTotalAmount(BookingRequest request) {
+        try {
+            return Math.multiplyExact(
+                    request.getTicketQuantity(),
+                    request.getPricePerTicketInCents()
+            );
+        } catch (ArithmeticException e) {
+            throw new IllegalArgumentException("Total amount is too large");
+        }
+    }
+
 }

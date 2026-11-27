@@ -49,10 +49,9 @@ class BookingManagerFailedPaymentTest {
                 () -> bookingManager.bookTicket(request)
         );
 
-        verify(paymentGateway, times(1))
-                .processPayment("C101", 3000);
-
-        verify(notificationService, never())
-                .sendConfirmation(anyString());
+        verify(eventRepository, times(1)).isSoldOut("E201");
+        verify(paymentGateway, times(1)).processPayment("C101", 3000);
+        verify(eventRepository, never()).saveBooking(any());
+        verify(notificationService, never()).sendConfirmation(anyString());
     }
 }

@@ -41,7 +41,7 @@ public class BookingManager {
         );
 
         if (soldOut) {
-            throw new IllegalStateException("Event is sold out");
+            throw new EventSoldOutException(request.getEventId());
         }
 
         // 4. Process payment

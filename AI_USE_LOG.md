@@ -1,36 +1,17 @@
 
 # AI Use Log
 
-## Project
+Complete this log only for material AI assistance that influenced assessed code, tests, test data, models, or report analysis. Minor autocomplete, formatting, and grammar corrections do not require separate entries.
 
-Software Testing – Ticket Booking System
+| Date | Tool | Purpose and prompt summary | Files or sections affected | How the output was checked | Decision |
+|---|---|---|---|---|---|
+| 2026-11-27 | ChatGPT | Assistance with understanding Milestone 1 requirements, discussing the BookingManager implementation, constructor dependency injection, request validation, total amount calculation, and drafting a successful booking test using JUnit 5 and Mockito. | BookingManager.java; BookingManagerSuccessfulBookingTest.java | The suggestions were compared with the official project requirements and the team's interface design. The team must execute the affected tests and independently verify the expected results before submission. | Modified |
 
-## AI Tool Used
+## Student responsibility
 
-ChatGPT
+For every retained output, the team confirms that it:
 
-## Purpose of AI Assistance
-
-AI assistance was used as a supporting tool during Milestone 1 to help understand project requirements, discuss implementation decisions, review code structure, and troubleshoot technical issues.
-
-## Tasks Supported
-
-- Understanding the Milestone 1 requirements and team responsibilities.
-- Reviewing Java interfaces, classes, and the project structure.
-- Discussing the BookingManager implementation, including constructor dependency injection, request validation, total amount calculation, and booking workflow.
-- Assistance with the structure of JUnit 5 and Mockito test cases.
-- Explaining Maven commands and troubleshooting Java and Git errors.
-- Explaining Git and GitHub operations, including pull, commit, rebase, and push.
-- Preparing and organizing this AI Use Log.
-
-## Verification
-
-AI-generated suggestions and code examples are considered supporting drafts. The team is responsible for reviewing them against the official project requirements, understanding the implementation, making necessary modifications, and running the project tests before submission.
-
-Test results will only be reported after the tests have actually been executed and verified.
-
-## Team Responsibility
-
-All team members are responsible for reviewing, understanding, modifying, and verifying their respective code and tests.
-
-The team shares responsibility for reviewing the integration of all components, confirming that the complete project works correctly, and ensuring that the final submission meets the project requirements.
+- checked it against the project requirements;
+- executed and reviewed affected tests;
+- verified expected results independently; and
+- can explain and modify the submitted work.
